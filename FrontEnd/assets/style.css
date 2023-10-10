@@ -28,6 +28,10 @@ article, aside, details, figcaption, figure,
 footer, header, hgroup, menu, nav, section {
 	display: block;
 }
+a{
+    text-decoration: none;
+    color: black;
+}
 body {
 	line-height: 1;
 }
@@ -49,13 +53,12 @@ table {
 /** end reset css**/
 body {
 	max-width: 1140px;
+	width: auto;
 	margin:auto;
 	font-family: 'Work Sans' ;
 	font-size: 14px;
 }
 header {
-	display: flex;
-	justify-content: space-between;
 	margin: 50px 0
 }
 section {
@@ -98,6 +101,7 @@ nav li {
 li:hover {
 	color: #B1663C;
 }
+
 #introduction {
 	display: flex;
 	align-items: center;
@@ -135,8 +139,65 @@ li:hover {
 
 .gallery img {
 	width: 100%;
-
 }
+
+/* Header*/
+
+header {
+	background-color: #FFFEF8;
+}
+
+.navHead {
+	display: flex;
+	justify-content: space-between;
+}
+
+/* Log-In */
+
+.loginPost {
+	position: absolute;
+	display: none;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	width: 1140px;
+	height: 100%;
+	background-color: #FFFEF8;
+}
+
+.loginPost h2 {
+	margin-bottom: 20px;
+}
+
+.loginPost button {
+	border-radius: 25px;
+	color: white;
+	border: solid #1D6154 1px;
+	margin: 20px 10px;
+	padding: 8px 32px;
+	background-color: #1D6154;
+	cursor: pointer;
+	font-size: 12px;
+	font-family: 'Syne';
+}
+
+.loginPost a{
+	text-decoration: underline;
+}
+
+.mail p, .password p {
+	font-family: 'Work Sans';
+}
+
+.mail input, .password input {
+	width: 280px;
+	height: 35px;
+	margin: 5px 0;
+	margin-bottom: 15px;
+	border: none;
+	box-shadow: 0px 4px 14px 0px rgba(0, 0, 0, 0.09);
+}
+
 
 /* Filtres */
 
@@ -154,6 +215,8 @@ li:hover {
 	padding: 7px 12px;
 	background-color: white;
 	cursor: pointer;
+	font-size: 13px;
+	font-family: 'Syne';
 }
 
 .filtre1 {
