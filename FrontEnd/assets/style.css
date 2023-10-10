@@ -137,6 +137,37 @@ li:hover {
 	width: 100%;
 
 }
+
+/* Filtres */
+
+.filtres {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.btn-filtre {
+	border-radius: 25px;
+	color: #1D6154;
+	border: solid #1D6154 1px;
+	margin: 0 10px;
+	padding: 7px 12px;
+	background-color: white;
+	cursor: pointer;
+}
+
+.filtre1 {
+	padding-right: 20px;
+	padding-left: 20px;
+}
+
+.btn-filtre:hover {
+	background-color: #1D6154;
+	color: white;
+}
+
+/**/
+
 #contact {
 	width: 50%;
 margin: auto;
