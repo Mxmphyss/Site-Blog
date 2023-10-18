@@ -205,6 +205,8 @@ header {
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	margin: 40px 0;
+
 }
 
 .btn-filtre {
@@ -280,3 +282,8 @@ footer nav ul {
 	margin: 2em
 }
 
+/* page logIn */
+
+.main-1 {
+	background-color: red;
+}
