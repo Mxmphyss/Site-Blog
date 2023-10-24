@@ -15,10 +15,29 @@ apiWorks();
 const apiCategory = async () => {
     await fetch("http://localhost:5678/api/categories")
     .then (reponse => reponse.json())
-    .then ((data) => (apiData = data) )
+    .then ((data) => (categoryData = data) )
 
-    btnfiltres(apiData);
+    btnfiltres(categoryData);
 }
 
 apiCategory();
 
+// Api Category
+
+/*
+
+const apiLogin = async () => {
+    await fetch("http://localhost:5678/api/users/login", {
+        method:"post",
+        headers: { "Content-Type": "application/json" },
+        body: newLog
+    } )
+    .then (reponse => reponse.json())
+    .then ((data) => (loginData = data) )
+
+    ;
+}
+
+apiLogin();
+
+*/

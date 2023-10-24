@@ -1,9 +1,8 @@
-
 // Afficher les travaux sur la page Index
 
-function indexWork(apiData) {
+const gallery = document.querySelector('.gallery');
 
-    let gallery = document.querySelector('.gallery')
+function indexWork(apiData) {
 
     apiData.forEach(element => {
         
@@ -26,51 +25,169 @@ function indexWork(apiData) {
 
 /* création de Filtres */
 
-function btnfiltres (categoryData){
+function btnfiltres(categoryData){
 
-    let filtres = document.querySelector('.filtres')
+    let filtres = document.querySelector('.filtres');
+
+    filtres.innerHTML = '<button class="btn-filtre all">Tous</button>';
 
     for(let i = 0; i < categoryData.length; i++){
         // const btnfiltre = document.createElement('button[data-id]')
-        filtres.innerHTML += '<button class = "btn-filtre filtres' + categoryData[i].id +'" data-id = "' + categoryData[i].id + '">' + categoryData[i].name + '</button>'
+        filtres.innerHTML += '<button class = "btn-filtre" data-id = "' + categoryData[i].id + '">' + categoryData[i].name + '</button>';
     }
+
+    const btnfiltre = document.querySelectorAll('.btn-filtre[data-id]');
+
+    btnfiltre.forEach(button => {
+        button.addEventListener('click', () => {
+            const dataId = button.dataset.id
+            let filtre = apiData.filter(function(element){
+                return element.categoryId == dataId;
+            });
+            gallery.innerHTML = '';
+            indexWork(filtre);
+        });
+    });
+
+    const btnAll = document.querySelector('.all');
+
+    btnAll.addEventListener('click', () => {
+        gallery.innerHTML = '';
+        return indexWork(apiData);
+    });
 }
 
-/* Filtres */
+/* Login
 
-/*Tous */
+Compte de test pour Sophie Bluel
 
-const btnfiltres1 = document.querySelector(".filtre1")
+email: sophie.bluel@test.tld
 
-/*Objets */
+password: S0phie 
 
-const btnfiltres2 = document.querySelector(".filtres1")
+*/
 
-btnfiltres2.addEventListener("click", function () {
-    const galleryFiltree = apiCategory.filter(function (piece) {
-        return piece.categoryData.name === "Objets";
+/* Method POST */
+
+/*
+
+newLog = {
+    "email" : "sophie.bluel@test.tld",
+    "password" : "S0phie"
+}
+
+export const chargeUtile = json.stringify(newLog)
+
+function token (){
+    res.status(200).json({
+        userId: user._id,
+        token: jwt.sign(
+            { userId: user._id },
+            'RANDOM_TOKEN_SECRET'
+        )
     });
-   console.log(galleryFiltree);
+}
+
+export const chargeUtile2 = json.stringify(token)
+
+*/
+
+/* creation de token
+
+const jwt = require('jsonwebtoken');
+
+/*
+
+
+exports.login = (req, res, next) => {
+    User.findOne({ email: req.body.email })
+        .then(user => {
+            if (!user) {
+                return res.status(401).json({ error: 'Utilisateur non trouvé !' });
+            }
+            bcrypt.compare(req.body.password, user.password)
+                .then(valid => {
+                    if (!valid) {
+                        return res.status(401).json({ error: 'Mot de passe incorrect !' });
+                    }
+                    res.status(200).json({
+                        userId: user._id,
+                        token: jwt.sign(
+                            { userId: user._id },
+                            'RANDOM_TOKEN_SECRET',
+                            { expiresIn: '24h' }
+                        )
+                    });
+                })
+                .catch(error => res.status(500).json({ error }));
+        })
+        .catch(error => res.status(500).json({ error }));
+ };
+
+ */
+
+ /*
+
+const formLog = document.querySelector('.form-log')
+
+formLog.addEventListener("submit", function (event){
+    event.preventDefault()
+    const formulaire = {
+        email: event.target.querySelector("[name=email]").value,
+        password: event.target.querySelector("[name=psw]").value
+    };
+
+    if (formulaire == newLog){
+        window.location.href="FrontEnd/login.html"
+    } 
+    else {
+        return res.status(401).json({ message: 'Utilisateur non trouvé !' });
+    }
 })
 
-/*Appartements */
+const login = document.querySelector('.btn-log')
 
-const btnfiltres3 = document.querySelector(".filtre2")
+login.addEventListener("click", function (){
 
-btnfiltres3.addEventListener("click", function(){
-    const galleryFiltree = categoryData.filter(function (piece) {
-        return piece.categoryData.name === "Appartements";
-    });
-   console.log(galleryFiltree);
 })
 
-/*Hôtel & restaurants */
+*/
 
-const btnfiltres4 = document.querySelector(".filtre3")
+/* La modale */
 
-btnfiltres4.addEventListener("click", function(){
-    const galleryFiltree = categoryData.filter(function (piece) {
-        return piece.categoryData.name === "Hotels & restaurants";
-    });
-   console.log(galleryFiltree);
-})
+const modalContainer = document.querySelector(".modal-container");
+const modalTriggers = document.querySelectorAll(".modal-trigger");
+
+modalTriggers.forEach(trigger => trigger.addEventListener("click", toggleModal))
+
+function toggleModal(){
+  modalContainer.classList.toggle("active")
+}
+
+/* La modale */
+
+const picture = document.querySelector(".modal-picture");
+
+/*
+picture.innerHTML= ''
+*/
+
+const btnEdition = document.querySelector(".edition2");
+const modalContainer2 = document.querySelector(".modal-container2");
+const cross = document.querySelector(".close-modal2");
+const overlay = document.querySelector(".overlay2");
+
+function addActive(){
+    modalContainer2.classList.add("active")
+}
+
+btnEdition.addEventListener("click", addActive)
+
+function deleteActive(){
+    modalContainer2.classList.remove("active")
+}
+
+cross.addEventListener("click", deleteActive)
+overlay.addEventListener("click", deleteActive)
+
+console.log(btnEdition)
