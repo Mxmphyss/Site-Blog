@@ -4,6 +4,7 @@ const gallery = document.querySelector('.gallery');
 
 function indexWork(apiData) {
 
+    // Affiche les travaux sur la gallerie Index
     apiData.forEach(element => {
         
         newFigure = document.createElement('figure');
@@ -21,6 +22,8 @@ function indexWork(apiData) {
         newFigure.appendChild(newTitle)
 
     });
+
+    // Affiche les travaux sur la galerie de la modale
 }
 
 /* création de Filtres */
@@ -57,102 +60,6 @@ function btnfiltres(categoryData){
     });
 }
 
-/* Login
-
-Compte de test pour Sophie Bluel
-
-email: sophie.bluel@test.tld
-
-password: S0phie 
-
-*/
-
-/* Method POST */
-
-/*
-
-newLog = {
-    "email" : "sophie.bluel@test.tld",
-    "password" : "S0phie"
-}
-
-export const chargeUtile = json.stringify(newLog)
-
-function token (){
-    res.status(200).json({
-        userId: user._id,
-        token: jwt.sign(
-            { userId: user._id },
-            'RANDOM_TOKEN_SECRET'
-        )
-    });
-}
-
-export const chargeUtile2 = json.stringify(token)
-
-*/
-
-/* creation de token
-
-const jwt = require('jsonwebtoken');
-
-/*
-
-
-exports.login = (req, res, next) => {
-    User.findOne({ email: req.body.email })
-        .then(user => {
-            if (!user) {
-                return res.status(401).json({ error: 'Utilisateur non trouvé !' });
-            }
-            bcrypt.compare(req.body.password, user.password)
-                .then(valid => {
-                    if (!valid) {
-                        return res.status(401).json({ error: 'Mot de passe incorrect !' });
-                    }
-                    res.status(200).json({
-                        userId: user._id,
-                        token: jwt.sign(
-                            { userId: user._id },
-                            'RANDOM_TOKEN_SECRET',
-                            { expiresIn: '24h' }
-                        )
-                    });
-                })
-                .catch(error => res.status(500).json({ error }));
-        })
-        .catch(error => res.status(500).json({ error }));
- };
-
- */
-
- /*
-
-const formLog = document.querySelector('.form-log')
-
-formLog.addEventListener("submit", function (event){
-    event.preventDefault()
-    const formulaire = {
-        email: event.target.querySelector("[name=email]").value,
-        password: event.target.querySelector("[name=psw]").value
-    };
-
-    if (formulaire == newLog){
-        window.location.href="FrontEnd/login.html"
-    } 
-    else {
-        return res.status(401).json({ message: 'Utilisateur non trouvé !' });
-    }
-})
-
-const login = document.querySelector('.btn-log')
-
-login.addEventListener("click", function (){
-
-})
-
-*/
-
 /* La modale */
 
 const modalContainer = document.querySelector(".modal-container");
@@ -166,28 +73,91 @@ function toggleModal(){
 
 /* La modale */
 
-const picture = document.querySelector(".modal-picture");
-
-/*
-picture.innerHTML= ''
-*/
-
 const btnEdition = document.querySelector(".edition2");
 const modalContainer2 = document.querySelector(".modal-container2");
-const cross = document.querySelector(".close-modal2");
-const overlay = document.querySelector(".overlay2");
 
 function addActive(){
-    modalContainer2.classList.add("active")
+    modalContainer.classList.add("active");
+    modalContainer2.classList.remove("active");
 }
 
 btnEdition.addEventListener("click", addActive)
 
+const addPicture = document.querySelector(".addPicture")
+
 function deleteActive(){
+    modalContainer.classList.remove("active");
+    modalContainer2.classList.add("active")
+}
+
+addPicture.addEventListener("click", deleteActive)
+
+
+const retour = document.querySelector(".return-modal");
+
+retour.addEventListener("click", addActive)
+
+
+const cross = document.querySelector(".close-modal");
+const cross2 = document.querySelector(".close-modal2");
+const overlay = document.querySelector(".overlay2");
+
+function deleteAll(){
+    modalContainer.classList.remove("active");
     modalContainer2.classList.remove("active")
 }
 
-cross.addEventListener("click", deleteActive)
-overlay.addEventListener("click", deleteActive)
+cross.addEventListener("click", deleteAll)
+cross2.addEventListener("click", deleteAll)
+overlay.addEventListener("click", deleteAll)
 
-console.log(btnEdition)
+/* Supprimer une photo */
+
+/*
+
+const picture = document.querySelector(".modal-picture");
+
+function modalIndex(apiData) {
+
+    apiData.forEach(element => {
+
+    // Affiche les travaux sur la galerie de la modale        
+        newFigure = document.createElement('figure');
+        newFigure.classList.add('figureSize')
+        newFigure.id = element.id;
+
+        newImg = document.createElement('img');
+        newImg.classList.add('imgSize')
+        newImg.src = element.imageUrl
+        newImg.alt = element.title
+
+        trash = document.createElement('button');
+        trash.innerHTML = '<i class="fa-solid fa-trash-can"></i>'
+        trash.classList.add('trashSize')
+        trash.classList.add('trashSize'+ element.id)
+
+        picture.appendChild(newFigure)
+        newFigure.appendChild(newImg)
+        newFigure.appendChild(trash)
+
+    });
+
+}
+
+const btnTrash = document.querySelector(".trashSize");
+
+function deletePost(){
+    let id = document.getElementById("id").value;
+    console.log(id)
+    fetch(`http://localhost:5678/api/works/${id}`, {
+        method: "DELETE",
+        body: null,
+        headers: { "Content-Type": "application/json" },
+    })
+    .then ((response) => response.json())
+    .then ((json) => console.log(json));
+}
+
+btnTrash.addEventListener("click", deletePost);
+
+*/

@@ -6,6 +6,7 @@ const apiWorks = async () => {
     .then ((data) => (apiData = data) )
 
     indexWork(apiData);
+   //modalIndex(apiData);
 }
 
 apiWorks();
@@ -21,23 +22,3 @@ const apiCategory = async () => {
 }
 
 apiCategory();
-
-// Api Category
-
-/*
-
-const apiLogin = async () => {
-    await fetch("http://localhost:5678/api/users/login", {
-        method:"post",
-        headers: { "Content-Type": "application/json" },
-        body: newLog
-    } )
-    .then (reponse => reponse.json())
-    .then ((data) => (loginData = data) )
-
-    ;
-}
-
-apiLogin();
-
-*/

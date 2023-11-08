@@ -231,11 +231,45 @@ header {
 	box-shadow: 0px 4px 14px 0px rgba(0, 0, 0, 0.09);
 }
 
+
+/* Filtres */
+
+.filtres {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin: 40px 0;
+
+}
+
+.btn-filtre {
+	border-radius: 25px;
+	color: #1D6154;
+	border: solid #1D6154 1px;
+	margin: 0 10px;
+	padding: 7px 12px;
+	background-color: white;
+	cursor: pointer;
+	font-size: 13px;
+	font-family: 'Syne';
+}
+
+.filtre1 {
+	padding-right: 20px;
+	padding-left: 20px;
+}
+
+.btn-filtre:hover {
+	background-color: #1D6154;
+	color: white;
+}
+
 /* Bouton edition et modifier */
 
 /* button Mode édition */
 
-.head-edit{
+.headEdit{
+	visibility: hidden;
 	position: absolute;
 	top: 0;
 	left: 0;
@@ -246,13 +280,17 @@ header {
 	justify-content: center;
 }
 
+.headEdit.visible {
+	visibility: initial;
+	transition: .5s ease-in-out;
+}
+
 .edition {
 	display: flex;
 	justify-content: center;
 	align-items: center;
 	width: 118px;
 	height: 40px;
-	cursor: pointer;
 }
 
 .edition p, i {
@@ -274,11 +312,16 @@ header {
 }
 
 .edition2 {
+	visibility: hidden;
 	display: flex;
 	flex-direction: row;
 	height: 20px;
 	margin: 3px;
 	cursor: pointer;
+}
+.edition2.visible {
+	visibility: initial;
+	transition: .5s ease-in-out;
 }
 
 .edition2 i {
@@ -290,7 +333,7 @@ header {
 	margin-top: 3px;
 }
 
-/* Modale mode édition */
+/* Modale 1 */
 
   .modal-container {
 	/* display: none; */
@@ -327,7 +370,7 @@ header {
 	justify-content: center;
 	opacity: 0;
 	width: 50%;
-	padding: 10px;
+	padding-bottom: 30px;
 	background: #fff;
 	border-radius: 5px;
 	position: absolute;
@@ -369,17 +412,24 @@ header {
   }
 
 .line {
-	margin-top: 20px;
+	margin-top: 50px;
 	height: 1px;
-	width: 200px;
+	width: 660px;
 	background-color: grey;
 }
 
-.modal-inside button {
+.modal-inside {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.addPicture {
 	border-radius: 25px;
 	color: white;
 	border: solid #1D6154 1px;
 	margin-top: 40px;
+	margin-bottom: 20px;
 	padding: 8px 32px;
 	background-color: #1D6154;
 	cursor: pointer;
@@ -387,7 +437,43 @@ header {
 	font-family: 'Syne';
 }
 
-/* Modale button Modifier */
+.modal-inside h2{
+	margin: 44px 10px;
+}
+
+/* Modale picture */
+
+.modal-picture {
+	display: flex;
+	flex-wrap: wrap;
+	padding: 0 15%;
+}
+
+.figureSize {
+	position: relative;
+	margin: 15px 5px;
+
+}
+
+.imgSize {
+	width: 100px;
+	height: 140px;
+}
+
+.trashSize {
+	position: absolute;
+	top: 5px;
+	right: 5px;
+	width: 18px;
+	background-color: black;
+	cursor: pointer;
+}
+
+.trashSize i{
+	color: white;
+}
+
+/* Modale 2 */
 
 .modal-container2 {
 	/* display: none; */
@@ -419,9 +505,9 @@ header {
 	transition: opacity 0.4s ease-out;
   }
 
-  .main-modal2{
-	position: initial;
+  .main-modal{
 	display: flex;
+	flex-direction: column;
 	justify-content: center;
 	align-items: center;
   }
@@ -431,7 +517,6 @@ header {
 	justify-content: center;
 	opacity: 0;
 	width: 35%;
-	height: 85%;
 	padding: 20px 60px;
 	background: #fff;
 	border-radius: 5px;
@@ -556,49 +641,17 @@ header {
 	background-color: grey;
 	margin: 30px 0;
 }
-.addPicture{
+.addPicture2{
 	border-radius: 25px;
 	color: white;
 	width: 210px;
 	padding: 12px 52px;
-	margin: 27%;
+	margin: 40px;
 	margin-top: 10px;
 	background-color: #A7A7A7;
 	cursor: pointer;
 	font-size: 14px;
 	font-family: 'Syne';
-}
-
-/* Filtres */
-
-.filtres {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	margin: 40px 0;
-
-}
-
-.btn-filtre {
-	border-radius: 25px;
-	color: #1D6154;
-	border: solid #1D6154 1px;
-	margin: 0 10px;
-	padding: 7px 12px;
-	background-color: white;
-	cursor: pointer;
-	font-size: 13px;
-	font-family: 'Syne';
-}
-
-.filtre1 {
-	padding-right: 20px;
-	padding-left: 20px;
-}
-
-.btn-filtre:hover {
-	background-color: #1D6154;
-	color: white;
 }
 
 /**/

@@ -14,29 +14,12 @@
 	<link rel="stylesheet" href="./assets/style.css">
 </head>
 <body>
-<section class="head-edit">
-	<button class="edition modal-trigger">
+<section class="headEdit">
+	<div class="edition">
 		<i class="fa-solid fa-pen-to-square"></i>
 		<p>Mode édition</p>
-	</button>
-</section>
-<aside class="modal-container">
-	<div class="overlay modal-trigger"></div>
-	<div class="modal" role="dialog" aria-labelledby="modalTitle" aria-describedby="dialogDesc">
-		<button 
-			aria-label="close modal"
-			class="close-modal modal-trigger"><i class="fa-solid fa-xmark"></i>
-		</button>
-		<div class="modal-inside">
-			<h2>Galerie photo</h2>
-			<div class="modal-picture">
-
-			</div>
-			<div class="line"></div>
-			<button>Ajouter une photo</button>
-		</div>
 	</div>
-</aside>
+</section>
 <header>
 	<div class="navHead">
 		<h1>Sophie Bluel <span>Architecte d'intérieur</span></h1>
@@ -44,7 +27,7 @@
 			<ul>
 				<li>projets</li>
 				<li>contact</li>
-				<li><a href="./login.html">Login</a></li>
+				<li class="logTxt"><a href="./login.html">Login</a></li>
 				<li><img src="./assets/icons/instagram.png" alt="Instagram"></li>
 			</ul>
 		</nav>
@@ -69,6 +52,21 @@
 				<i class="fa-solid fa-pen-to-square"></i>
 				<p>Modifier</p>
 			</button>
+			<aside class="modal-container">
+				<div class="overlay modal-trigger"></div>
+				<div class="modal" role="dialog" aria-labelledby="modalTitle" aria-describedby="dialogDesc">
+					<button 
+						aria-label="close modal"
+						class="close-modal"><i class="fa-solid fa-xmark"></i>
+					</button>
+					<div class="modal-inside">
+						<h2>Galerie photo</h2>
+						<div class="modal-picture"></div>
+						<div class="line"></div>
+						<button class="addPicture">Ajouter une photo</button>
+					</div>
+				</div>
+			</aside>
 			<aside class="modal-container2">
 				<div class="overlay2"></div>
 				<div class="modal2" role="dialog" aria-labelledby="modalTitle" aria-describedby="dialogDesc">
@@ -99,7 +97,7 @@
 								</div>
 							</form>
 							<div class="line2"></div>
-							<button class="addPicture">Valider</button>
+							<button class="addPicture2">Valider</button>
 						</div>
 					</section>
 				</div>
