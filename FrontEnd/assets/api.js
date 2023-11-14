@@ -6,7 +6,7 @@ const apiWorks = async () => {
     .then ((data) => (apiData = data) )
 
     indexWork(apiData);
-   //modalIndex(apiData);
+    deletePost(apiData);
 }
 
 apiWorks();

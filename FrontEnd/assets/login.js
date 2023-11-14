@@ -33,20 +33,6 @@ btnLog.addEventListener("click", function(event){
                 window.location = "index.html";
             })
         }
-
-        if(localStorage.getItem('token')!= null){
-            let editMode = document.querySelector('.headEdit');
-            let editMode2 = document.querySelector('.edition2');
-            editMode.classList.add("visible");
-            editMode2.classList.add("visible");
-
-            let logTxt = document.querySelector('.logTxt');
-            logTxt.innerHTML = '<li class="logTxt">Logout</li>';
-
-            return;
-        } else {
-            console.log("le token n'est pas dans le localStorage");
-        }
     })
     .catch(error => 
         console.log('error: ' + error)    
