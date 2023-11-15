@@ -153,7 +153,7 @@ function deletePost(){
             const token = localStorage.getItem('token');
             console.log(figure);
 
-            if(token != null){
+            if(token){
                 fetch(`http://localhost:5678/api/works/${id}`, {
                     method: "DELETE",
                     headers: { "Content-Type": "application/json" },
@@ -161,21 +161,14 @@ function deletePost(){
                 })
                 .then((response) => {
                     if(response.ok){
-                        for (i = idDelete; i < 0; i++){
-                            if (i == figure.id){
-                                figure.remove(apiData);
-                                console.log(figure);
-                            } else {
-                                i++;
-                            }
-                        }
+                        figure.remove(apiData)
                     } else {
                         // Message d'erreur
                         document.querySelector('.alert-error1').innerText = "l'élément n'a pas pû être supprimé";
                     }
                 })
                 .catch(error => {
-                    // Message d'erreur sur la console
+                    console.log('error: ' + error)    
                 })
             }
         })
