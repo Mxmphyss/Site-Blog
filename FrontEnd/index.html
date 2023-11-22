@@ -82,43 +82,27 @@
 					<section class="modal-inside2">
 						<div class="main-modal">
 							<h2>Ajout photo</h2>
-							<form action="" class="input-picture">
+							<form action="" class="input-picture" id="form">
 								<div class="dwnld-img" data-img="">
 									<div class="imgArea">
-										<input type="file" id="file" accept="image/*" hidden>
+										<input type="file" id="file" class="point" accept="image/*" hidden>
 										<i class="fa-regular fa-image"></i>
 									</div>
 									<div class="add-img"><p>+ Ajouter photo</p></div>
 									<p>jpg, png: 4mo max</p>
 								</div>
 								<div class="title">
-									<p>Titre</p>
-									<input type="text" name="titre">
+									<label for="title">Titre</label>
+									<input type="text" name="titre" id="title" class="point">
 								</div>
 								<div class="category">
-									<p>Catégorie</p>
-									<div class="dropdown">
-									<i class="fa-solid fa-chevron-down"></i>
-										<div class="input-box"></div>
-										<div class="list">
-										  <div class="search-box">
-										  </div>
-										  <input type="radio" name="drop1" id="id11" class="radio" />
-										  <label for="id11">
-											<span class="name">Objets</span>
-										  </label>
-								
-										  <input type="radio" name="drop1" id="id12" class="radio" />
-										  <label for="id12">
-											<span class="name">Appartements</span>
-										  </label>
-								
-										  <input type="radio" name="drop1" id="id13" class="radio" />
-										  <label for="id13">
-											<span class="name">Hôtels & restaurants</span>
-										  </label>
-										</div>
-									</div>
+									<label for="category">Catégorie</label>
+									<select name="" id="id_category" class="point">
+										<option value="0"></option>
+										<option value="1">Objets</option>
+										<option value="2">Appartements</option>
+										<option value="3">Hôtels & restaurants</option>
+									</select>
 								</div>
 							</form>
 							<div class="line2"></div>

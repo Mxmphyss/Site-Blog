@@ -154,21 +154,23 @@ function deletePost(){
             console.log(figure);
 
             if(token){
-                fetch(`http://localhost:5678/api/works/${id}`, {
+                fetch(`http://localhost:5678/api/works/${idDelete}`, {
                     method: "DELETE",
-                    headers: { "Content-Type": "application/json" },
-                    Authorization: `Bearer ${token}`
+                    headers: {
+                        "Accept": "application/json",
+                        Authorization: `Bearer ${token}`
+                    }
                 })
                 .then((response) => {
                     if(response.ok){
-                        figure.remove(apiData)
+                        figure.remove();
                     } else {
                         // Message d'erreur
                         document.querySelector('.alert-error1').innerText = "l'élément n'a pas pû être supprimé";
                     }
                 })
                 .catch(error => {
-                    console.log('error: ' + error)    
+                    console.error('error: ' + error)    
                 })
             }
         })
@@ -209,75 +211,76 @@ inputFile.addEventListener('change', function () {
 	}
 })
 
+// Formulaire
+
 const btnCheck = document.querySelector('.addPicture2');
+const form = document.getElementById('form');
 
-btnCheck.addEventListener("click", function(event2){
-    event2.preventDefault();
+const image = document.getElementById('file');
+const title = document.getElementById('title');
+const category = document.getElementById('id_category');
 
-    // On récupère la valeurs des champs email et mot de passe
-    let title = document.querySelector("[name=titre]").value;
-    let category = document.querySelector(".input-box").value;
+function addWork(){
 
-    console.log(category)
+    btnCheck.addEventListener("click", function(event2){
+        event2.preventDefault();
+    
+        const token = localStorage.getItem('token');
+        const formWork = new FormData(form);
+    
+        // On récupère la valeurs des champs email et mot de passe
+        formWork.append('title', title.value);
+        formWork.append('category', category.value);
+        formWork.append('image', image.files[0]);
+    
+        fetch('http://localhost:5678/api/works', {
+            method: "POST",
+            headers: {
+                'Authorization': `Bearer ${token}`,
+            },
+            body: formWork,
+        })
+        .then((response) => {
+            return response.json;
+        })
+        .then(() => {
+            gallery.innerHTML = "";
+            apiWorks();
+        })
+        .catch(error => {
+            console.error('error: ' + error)    
+        })
+    
+    });
 
-    fetch('http://localhost:5678/api/users/login', {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-            "id": 1,
-            "title": title,
-            "imageUrl": "http://localhost:5678/images/abajour-tahina1651286843956.png",
-            "categoryId": 1,
-            "userId": 1,
-            "category": {
-              "id": 1,
-              "name": category
-            }
-          })
-    })
-    .catch(error => 
-        console.log('error: ' + error)    
-    );
+}
 
+/* Button disabled */
+
+const mainModal = document.querySelector(".main-modal");
+const btnPoint1 = document.querySelector('#file');
+const btnPoint2 = document.querySelector("#title");
+const btnPoint3 = document.querySelector('#id_category');
+
+btnPoint1.addEventListener("click", function(){
+    btnPoint1.classList.remove("point")
 })
 
-/* Liste catégorie stylisée */
+btnPoint2.addEventListener("keypress", function(){
+    btnPoint2.classList.remove("point")
+})
 
-let input = document.querySelector(".input-box");
-      input.onclick = function () {
-        this.classList.toggle("open");
-        let list = this.nextElementSibling;
-        if (list.style.maxHeight) {
-          list.style.maxHeight = null;
-          list.style.boxShadow = null;
-        } else {
-          list.style.maxHeight = list.scrollHeight + "px";
-          list.style.boxShadow =
-            "0 1px 2px 0 rgba(0, 0, 0, 0.15),0 1px 3px 1px rgba(0, 0, 0, 0.1)";
-        }
-      };
+btnPoint3.addEventListener("click", function(){
+    btnPoint3.classList.remove("point")
+})
 
-let rad = document.querySelectorAll(".radio");
-      rad.forEach((item) => {
-        item.addEventListener("change", () => {
-          input.innerHTML = item.nextElementSibling.innerHTML;
-          input.click();
-        });
-      });
+const allPoints = document.querySelectorAll(".point");
+const btnGreen = document.querySelector(".addPicture2");
 
-let label = document.querySelectorAll("label");
-      function search(searchin) {
-        let searchVal = searchin.value;
-        searchVal = searchVal.toUpperCase();
-        label.forEach((item) => {
-          let checkVal = item.querySelector(".name").innerHTML;
-          checkVal = checkVal.toUpperCase();
-          if (checkVal.indexOf(searchVal) == -1) {
-            item.style.display = "none";
-          } else {
-            item.style.display = "flex";
-          }
-          let list = input.nextElementSibling;
-          list.style.maxHeight = list.scrollHeight + "px";
-        });
-      }
+function count (){
+    if (allPoints.length < allPoints[3]){
+        btnGreen.classList.add('active')
+    }
+}
+
+count();

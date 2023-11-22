@@ -630,6 +630,11 @@ header {
 	font-size: 10px;
 }
 
+.title{
+	display: flex;
+	flex-direction: column;
+}
+
 .title p, .category p {
 	font-family: 'Work Sans';
 }
@@ -647,10 +652,19 @@ header {
 
 .category{
 	position: relative;
+	display: flex;
+	flex-direction: column;
 }
 
-.ctg select {
-	padding-right: 25px;
+.category select {
+	border-style: none;
+	box-sizing: border-box;
+	width: 425px;
+	height: 35px;
+	padding: 10px 15px;
+	margin: 5px 0;
+	margin-bottom: 15px;
+	box-shadow: 0px 4px 14px 0px rgba(0, 0, 0, 0.09);
 }
 
 .dropdown i{
@@ -694,6 +708,10 @@ header {
 	cursor: pointer;
 	font-size: 14px;
 	font-family: 'Syne';
+}
+
+.addPicture2.active {
+	background-color: #1D6154;
 }
 
 /* Liste catégorie stylisée */
