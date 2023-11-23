@@ -630,6 +630,14 @@ header {
 	font-size: 10px;
 }
 
+.imgEvent{
+	visibility: hidden;
+}
+
+.imgEvent.hidden {
+	visibility: visible;
+}
+
 .title{
 	display: flex;
 	flex-direction: column;
@@ -705,12 +713,12 @@ header {
 	margin: 40px;
 	margin-top: 10px;
 	background-color: #A7A7A7;
-	cursor: pointer;
 	font-size: 14px;
 	font-family: 'Syne';
 }
 
 .addPicture2.active {
+	cursor: pointer;
 	background-color: #1D6154;
 }
 

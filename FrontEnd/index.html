@@ -63,7 +63,7 @@
 					<div class="modal-inside">
 						<h2>Galerie photo</h2>
 						<div class="modal-picture"></div>
-						<div class="alert-error1"></div>
+						<span class="alert-error1"></span>
 						<div class="line"></div>
 						<button class="addPicture">Ajouter une photo</button>
 					</div>
@@ -85,19 +85,20 @@
 							<form action="" class="input-picture" id="form">
 								<div class="dwnld-img" data-img="">
 									<div class="imgArea">
-										<input type="file" id="file" class="point" accept="image/*" hidden>
+										<input type="file" id="file" accept="image/*" hidden>
 										<i class="fa-regular fa-image"></i>
 									</div>
 									<div class="add-img"><p>+ Ajouter photo</p></div>
 									<p>jpg, png: 4mo max</p>
+									<img class="imgCheck imgEvent" src="">
 								</div>
 								<div class="title">
 									<label for="title">Titre</label>
-									<input type="text" name="titre" id="title" class="point">
+									<input type="text" name="titre" id="title">
 								</div>
 								<div class="category">
 									<label for="category">Catégorie</label>
-									<select name="" id="id_category" class="point">
+									<select name="" id="id_category">
 										<option value="0"></option>
 										<option value="1">Objets</option>
 										<option value="2">Appartements</option>
@@ -105,8 +106,9 @@
 									</select>
 								</div>
 							</form>
+							<span class="alert-error2"></span>
 							<div class="line2"></div>
-							<button class="addPicture2">Valider</button>
+							<button type="submit" class="addPicture2" disabled>Valider</button>
 						</div>
 					</section>
 				</div>

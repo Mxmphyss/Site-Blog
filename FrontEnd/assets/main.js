@@ -193,15 +193,18 @@ inputFile.addEventListener('change', function () {
 		const reader = new FileReader();
 		reader.onload = ()=> {
 			const imgUrl = reader.result;
-			const img = document.createElement('img');
-			img.src = imgUrl;
-			imgTarget.appendChild(img);
+			const img = imgTarget.querySelector('.imgCheck');
+			img.src = this.innerText = "";
+            img.src = imgUrl;
+            img.classList.add('hidden');
 			imgTarget.classList.add('active');
 			imgTarget.dataset.img = image.name;
             const allImg = imgTarget.querySelector('img');
             allImg.addEventListener('click', function (){
-                allImg.remove();
+                const imgSrc = img.src
+                imgSrc.innerText = "";
                 imgTarget.classList.remove('active');
+                img.classList.remove('hidden');
                 inputFile.click();
             });
 		}
@@ -217,8 +220,28 @@ const btnCheck = document.querySelector('.addPicture2');
 const form = document.getElementById('form');
 
 const image = document.getElementById('file');
+const imgCheck = document.querySelector('.imgCheck')
 const title = document.getElementById('title');
 const category = document.getElementById('id_category');
+
+console.log(imgCheck)
+console.log(title)
+console.log(category)
+
+/* Button disabled */
+
+if(imgCheck.src !== "" && title.value !== "" && category.value !== 0 ){
+    const myError2 = document.querySelector('.alert-error2');
+    myError2.innerHTML = 'tout les champs sont remplis';
+    btnCheck.removeAttribute('disabled');
+    btnCheck.classList.add('active');
+} else {
+    const myError2 = document.querySelector('.alert-error2');
+    myError2.innerHTML = 'tout les champs sont obligatoires';
+    myError2.style.color = 'red';
+}
+
+/* Button check */
 
 function addWork(){
 
@@ -250,37 +273,5 @@ function addWork(){
         .catch(error => {
             console.error('error: ' + error)    
         })
-    
     });
-
 }
-
-/* Button disabled */
-
-const mainModal = document.querySelector(".main-modal");
-const btnPoint1 = document.querySelector('#file');
-const btnPoint2 = document.querySelector("#title");
-const btnPoint3 = document.querySelector('#id_category');
-
-btnPoint1.addEventListener("click", function(){
-    btnPoint1.classList.remove("point")
-})
-
-btnPoint2.addEventListener("keypress", function(){
-    btnPoint2.classList.remove("point")
-})
-
-btnPoint3.addEventListener("click", function(){
-    btnPoint3.classList.remove("point")
-})
-
-const allPoints = document.querySelectorAll(".point");
-const btnGreen = document.querySelector(".addPicture2");
-
-function count (){
-    if (allPoints.length < allPoints[3]){
-        btnGreen.classList.add('active')
-    }
-}
-
-count();

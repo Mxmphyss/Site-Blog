@@ -6,6 +6,7 @@ const apiWorks = async () => {
     .then ((data) => (apiData = data) )
 
     indexWork(apiData);
+    indexWork2()
     deletePost();
     addWork();
 }
