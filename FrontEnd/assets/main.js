@@ -224,22 +224,25 @@ const imgCheck = document.querySelector('.imgCheck')
 const title = document.getElementById('title');
 const category = document.getElementById('id_category');
 
-console.log(imgCheck)
-console.log(title)
-console.log(category)
-
 /* Button disabled */
 
-if(imgCheck.src !== "" && title.value !== "" && category.value !== 0 ){
-    const myError2 = document.querySelector('.alert-error2');
-    myError2.innerHTML = 'tout les champs sont remplis';
-    btnCheck.removeAttribute('disabled');
-    btnCheck.classList.add('active');
-} else {
-    const myError2 = document.querySelector('.alert-error2');
-    myError2.innerHTML = 'tout les champs sont obligatoires';
-    myError2.style.color = 'red';
+function checkFormInputs() {
+    // Vérification des valeurs dans les champs
+    if (image.files.length > 0 && title.value && category.value !== "0") {
+        // Si les champs contiennent une image, un titre et une valeur différente de 0 pour les catégories, on retire l'attribut disabled
+        btnCheck.removeAttribute('disabled');
+    } else {
+        // Sinon on ajoute l'attribut disabled
+        btnCheck.setAttribute('disabled', 'disabled');
+    }
 }
+
+checkFormInputs();
+
+// On créé un évènement pour chaque champs, on appelle la fonction qui permet de vérifier leur valeur
+image.addEventListener('change', checkFormInputs);
+title.addEventListener('input', checkFormInputs);
+category.addEventListener('change', checkFormInputs);
 
 /* Button check */
 
