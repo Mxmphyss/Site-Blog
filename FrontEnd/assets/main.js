@@ -231,6 +231,7 @@ function checkFormInputs() {
     if (image.files.length > 0 && title.value && category.value !== "0") {
         // Si les champs contiennent une image, un titre et une valeur différente de 0 pour les catégories, on retire l'attribut disabled
         btnCheck.removeAttribute('disabled');
+        btnCheck.classList.add('active')
     } else {
         // Sinon on ajoute l'attribut disabled
         btnCheck.setAttribute('disabled', 'disabled');
@@ -271,7 +272,13 @@ function addWork(){
         })
         .then(() => {
             gallery.innerHTML = "";
+            modalGallery.innerHTML="";
             apiWorks();
+            form.rest();
+            const img = imgTarget.querySelector('.imgCheck')
+            img.src="";
+            imgTarget.classList.remove('active');
+            img.classList.remove('hidden');
         })
         .catch(error => {
             console.error('error: ' + error)    
