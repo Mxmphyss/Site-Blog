@@ -5,6 +5,9 @@ const modalGallery = document.querySelector(".modal-picture");
 
 function indexWork(apiData) {
 
+    gallery.innerHTML = '';
+    modalGallery.innerHTML = '';
+
     // Affiche les travaux sur la gallerie Index
     apiData.forEach(element => {
         
@@ -12,15 +15,15 @@ function indexWork(apiData) {
         newFigure.id = element.id;
 
         newImg = document.createElement('img');
-        newImg.src = element.imageUrl
-        newImg.alt = element.title
+        newImg.src = element.imageUrl;
+        newImg.alt = element.title;
 
         newTitle = document.createElement('figcaption');
-        newTitle.innerText = element.title
+        newTitle.innerText = element.title;
 
-        gallery.appendChild(newFigure)
-        newFigure.appendChild(newImg)
-        newFigure.appendChild(newTitle)
+        gallery.appendChild(newFigure);
+        newFigure.appendChild(newImg);
+        newFigure.appendChild(newTitle);
 
     });
 
@@ -30,22 +33,22 @@ function indexWork(apiData) {
 
         // Affiche les travaux sur la galerie de la modale        
         newFigure = document.createElement('figure');
-        newFigure.classList.add('figureSize')
+        newFigure.classList.add('figureSize');
         newFigure.id = element.id;
 
         newImg = document.createElement('img');
-        newImg.classList.add('imgSize')
-        newImg.src = element.imageUrl
-        newImg.alt = element.title
+        newImg.classList.add('imgSize');
+        newImg.src = element.imageUrl;
+        newImg.alt = element.title;
 
         trash = document.createElement('button');
-        trash.innerHTML = '<i class="fa-solid fa-trash-can"></i>'
-        trash.classList.add('trashSize')
-        trash.setAttribute('data-id', element.id)
+        trash.innerHTML = '<i class="fa-solid fa-trash-can"></i>';
+        trash.classList.add('trashSize');
+        trash.setAttribute('data-id', element.id);
 
-        modalGallery.appendChild(newFigure)
-        newFigure.appendChild(newImg)
-        newFigure.appendChild(trash)
+        modalGallery.appendChild(newFigure);
+        newFigure.appendChild(newImg);
+        newFigure.appendChild(trash);
     
     });
 }
@@ -143,6 +146,7 @@ const btnTrash = document.querySelector(".trashSize");
 function deletePost(){
 
     const btnDeletes = document.querySelectorAll('.trashSize');
+    const idGallery = document.querySelectorAll('.gallery figure');
 
     btnDeletes.forEach((btnDelete, index) => {
         btnDelete.addEventListener('click', (e) => {
@@ -164,6 +168,9 @@ function deletePost(){
                 .then((response) => {
                     if(response.ok){
                         figure.remove();
+                        if(idGallery[index]){
+                            idGallery[index].remove();
+                        }
                     } else {
                         // Message d'erreur
                         document.querySelector('.alert-error1').innerText = "l'élément n'a pas pû être supprimé";
@@ -231,7 +238,7 @@ function checkFormInputs() {
     if (image.files.length > 0 && title.value && category.value !== "0") {
         // Si les champs contiennent une image, un titre et une valeur différente de 0 pour les catégories, on retire l'attribut disabled
         btnCheck.removeAttribute('disabled');
-        btnCheck.classList.add('active')
+        btnCheck.classList.add('active');
     } else {
         // Sinon on ajoute l'attribut disabled
         btnCheck.setAttribute('disabled', 'disabled');
@@ -247,10 +254,10 @@ category.addEventListener('change', checkFormInputs);
 
 /* Button check */
 
-function addWork(){
 
-    btnCheck.addEventListener("click", function(event2){
-        event2.preventDefault();
+function addWork(){
+    btnCheck.addEventListener("click", (e) => {
+        e.preventDefault();
     
         const token = localStorage.getItem('token');
         const formWork = new FormData(form);
@@ -271,14 +278,18 @@ function addWork(){
             return response.json;
         })
         .then(() => {
-            gallery.innerHTML = "";
-            modalGallery.innerHTML="";
+            console.log("Travail ajouté avec succès");
+            //gallery.innerHTML = '';
+            //modalGallery.innerHTML = '';
             apiWorks();
-            form.rest();
-            const img = imgTarget.querySelector('.imgCheck')
+            // Vider le formulaire
+            form.reset();
+            const img = imgTarget.querySelector('.imgCheck');
             img.src="";
+            imgTarget.dataset.img = "";
             imgTarget.classList.remove('active');
             img.classList.remove('hidden');
+            btnCheck.value = "";
         })
         .catch(error => {
             console.error('error: ' + error)    
