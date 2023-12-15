@@ -87,7 +87,7 @@ function btnfiltres(categoryData){
     });
 }
 
-/* La modale */
+/* La modale 1 */
 
 const modalContainer = document.querySelector(".modal-container");
 const modalTriggers = document.querySelectorAll(".modal-trigger");
@@ -98,7 +98,7 @@ function toggleModal(){
   modalContainer.classList.toggle("active")
 }
 
-/* La modale */
+/* La modale 2 */
 
 const btnEdition = document.querySelector(".edition2");
 const modalContainer2 = document.querySelector(".modal-container2");
